@@ -1,12 +1,16 @@
 <template>
   <ul>
-    <li v-for="book of list" :key="book.Id">{{ book.Title }}</li>
+    <li v-for="(book, index) of list" :key="index">{{ book.Title }}</li>
   </ul>
 </template>
 
 <script>
 export default {
-  props: ["list"],
+  computed: {
+    list() {
+      return this.$store.state.list;
+    },
+  },
 };
 </script>
 

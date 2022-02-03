@@ -8,7 +8,7 @@
       </div>
       <div class="list-container">
         <svg
-          @click="clickShowList"
+          @click="$store.commit('toggleShowList')"
           xmlns="http://www.w3.org/2000/svg"
           height="24px"
           viewBox="0 0 24 24"
@@ -21,10 +21,10 @@
           />
         </svg>
 
-        <List v-if="showlist" :list="list" />
+        <List v-if="$store.state.showList" />
       </div>
     </div>
-    <router-view :books="books" @add="addToList" />
+    <router-view />
   </div>
 </template>
 
@@ -35,22 +35,18 @@ export default {
   data() {
     return {
       books: null,
-      showlist: false,
-      list: [],
     };
   },
-  mounted() {
-    fetch("/books.json")
-      .then((res) => res.json())
-      .then((data) => (this.books = data));
+  computed: {
+    showList() {
+      return this.$store.state.showList;
+    },
   },
-  methods: {
-    clickShowList() {
-      this.showlist = !this.showlist;
-    },
-    addToList(book) {
-      this.list.push(book);
-    },
+  mounted() {
+    this.$store.dispatch("fetchBooks");
+    // fetch("/books.json")
+    //   .then((res) => res.json())
+    //   .then((data) => (this.books = data));
   },
 };
 </script>

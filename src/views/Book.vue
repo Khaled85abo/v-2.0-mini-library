@@ -52,7 +52,9 @@
             </div>
           </div>
         </div>
-        <button @click="$emit('add', book)">Oh, I want to read it!</button>
+        <button @click="$store.dispatch('addToList', book)">
+          Oh, I want to read it!
+        </button>
       </div>
     </div>
   </div>
@@ -60,10 +62,9 @@
 
 <script>
 export default {
-  props: ["books"],
   computed: {
     book() {
-      return this.books.find(
+      return this.$store.state.books.find(
         (book) => book.Id === Number(this.$route.params.id)
       );
     },

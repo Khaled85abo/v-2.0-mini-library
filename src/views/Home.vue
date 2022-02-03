@@ -16,13 +16,13 @@
 
 <script>
 export default {
-  props: ['books'],
-  mounted() {
-    console.log(this.books);
+  computed: {
+    books() {
+      return this.$store.state.books;
+    },
   },
   methods: {
     bookView(id) {
-      console.log(id);
       this.$router.push({ path: `/book/${id}` });
 
       //  this.$router.push({name:'Book', params: id})
