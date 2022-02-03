@@ -17,6 +17,9 @@ const store = new Vuex.Store({
     },
     addToList(context, payload) {
       context.commit("addToList", payload);
+    },
+    toggleShowList(context) {
+      context.commit("toggleShowList");
     }
   },
   mutations: {

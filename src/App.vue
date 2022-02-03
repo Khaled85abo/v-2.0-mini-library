@@ -8,7 +8,7 @@
       </div>
       <div class="list-container">
         <svg
-          @click="$store.commit('toggleShowList')"
+          @click="$store.dispatch('toggleShowList')"
           xmlns="http://www.w3.org/2000/svg"
           height="24px"
           viewBox="0 0 24 24"
